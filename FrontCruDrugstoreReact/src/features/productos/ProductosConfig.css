@@ -1,0 +1,17 @@
+.stock-badge {
+    display: inline-flex;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.stock-low {
+    background-color: var(--color-danger-light);
+    color: var(--color-danger-hover);
+}
+
+.stock-ok {
+    background-color: var(--color-primary-light);
+    color: var(--color-primary-hover);
+}

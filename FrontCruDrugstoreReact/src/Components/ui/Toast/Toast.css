@@ -1,0 +1,67 @@
+.toast-container {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.toast {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 280px;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-xl);
+    border: 1px solid;
+    box-shadow: var(--shadow-lg);
+    animation: slideRight 0.35s ease forwards;
+}
+
+.toast-message {
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* TIPOS */
+
+.toast-exito {
+    background: var(--color-primary-light);
+    border-color: var(--color-primary-border);
+    color: var(--color-primary-active);
+}
+
+.toast-error {
+    background: var(--color-danger-light);
+    border-color: var(--color-danger-border);
+    color: var(--color-danger);
+}
+
+.toast-info {
+    background: var(--color-info-light);
+    border-color: var(--color-info-border);
+    color: var(--color-info-dark);
+}
+
+/* ICONOS */
+
+.toast-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+}
+
+.toast-icon-exito {
+    color: var(--color-success);
+}
+
+.toast-icon-error {
+    color: var(--color-danger);
+}
+
+.toast-icon-info {
+    color: var(--color-info);
+}

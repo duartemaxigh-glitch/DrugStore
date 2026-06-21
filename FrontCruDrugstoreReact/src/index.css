@@ -1,0 +1,20 @@
+@import "./theme/variables.css";
+@import "./theme/animations.css";
+@import "./theme/components.css";
+@import "./theme/utilities.css";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--color-gray-50);
+    color: var(--color-gray-900);
+}
+
+li {
+    list-style: none;
+}

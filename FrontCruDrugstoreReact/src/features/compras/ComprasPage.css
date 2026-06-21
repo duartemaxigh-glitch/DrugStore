@@ -1,0 +1,829 @@
+/* ==========================================
+    COMPRAS PAGE
+   ========================================== */
+
+.compras-page {
+    --compras-accent: var(--color-info);           /* blue-500 */
+    --compras-accent-hover: var(--color-info-dark); /* blue-700 */
+    --compras-accent-light: var(--color-info-light);/* blue-50  */
+    --compras-accent-border: var(--color-info-border);/* blue-200 */
+    animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+.compras-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+    margin-bottom: 1.5rem;
+}
+
+/* ==========================================
+    LOADING
+   ========================================== */
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem 0;
+}
+
+/* El spinner usa border-emerald-600 en el original,
+   se mantiene igual ya que es un componente global */
+.loading-spinner {
+    width: 2rem;
+    height: 2rem;
+    border: 4px solid var(--color-primary);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* ==========================================
+    TABS
+   ========================================== */
+
+.compras-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.compras-tab-btn {
+    padding: 0.625rem 1.25rem;
+    border-radius: var(--radius-xl);
+    font-weight: 600;
+    font-size: 0.875rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.compras-tab-btn--active {
+    background-color: var(--compras-accent);
+    color: white;
+    box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.25);
+}
+
+.compras-tab-btn--inactive {
+    background-color: white;
+    color: var(--color-gray-600);
+    border: 1px solid var(--color-gray-200);
+}
+
+.compras-tab-btn--inactive:hover {
+    background-color: var(--color-gray-50);
+}
+
+/* ==========================================
+    NUEVA COMPRA — contenedor
+   ========================================== */
+
+.nueva-compra {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* ==========================================
+    COMPRA EXITOSA
+   ========================================== */
+
+.compra-exitosa {
+    background-color: white;
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-2xl);
+    padding: 2rem;
+    text-align: center;
+    animation: scaleIn 0.2s ease forwards;
+}
+
+.compra-exitosa-icon {
+    width: 4rem;
+    height: 4rem;
+    color: var(--compras-accent);
+    margin: 0 auto 1rem;
+}
+
+.compra-exitosa-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+    margin-bottom: 0.5rem;
+}
+
+.compra-exitosa-text {
+    color: var(--color-gray-500);
+    margin-bottom: 0.5rem;
+}
+
+.compra-exitosa-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1rem auto 0;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--compras-accent);
+    color: white;
+    border: none;
+    border-radius: var(--radius-xl);
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.compra-exitosa-btn:hover {
+    background-color: var(--compras-accent-hover);
+}
+
+.compra-exitosa-btn:active {
+    transform: scale(0.95);
+}
+
+/* ==========================================
+    CARD BASE (proveedor, buscador, carrito)
+   ========================================== */
+
+/* Todos los paneles comparten esta base */
+.compras-card {
+    background: white;
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-2xl);
+    padding: 1.25rem;
+}
+
+/* ==========================================
+    SELECTOR DE PROVEEDOR
+   ========================================== */
+
+.compras-proveedor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.compras-proveedor-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-gray-700);
+}
+
+/* Botón "+ Nuevo Proveedor" / "+ Nuevo Producto" */
+.compras-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0.75rem;
+    border: none;
+    border-radius: var(--radius-lg);
+    background: transparent;
+    color: var(--compras-accent);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.compras-link-btn:hover {
+    background: var(--compras-accent-light);
+}
+
+.compras-proveedor-select {
+    width: 100%;
+    padding: 0.625rem 0.75rem;
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-xl);
+    background: white;
+    font-size: 0.875rem;
+    font-family: inherit;
+    color: var(--color-gray-800);
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.compras-proveedor-select:focus {
+    border-color: var(--compras-accent);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* ==========================================
+    BUSCADOR DE PRODUCTOS
+   ========================================== */
+
+.compras-buscador-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.compras-buscador-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+}
+
+.compras-buscador-wrapper {
+    position: relative;
+}
+
+.compras-buscador-input-container {
+    position: relative;
+}
+
+.compras-buscador-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--color-gray-400);
+}
+
+.compras-buscador-input {
+    width: 100%;
+    padding: 0.625rem 1rem 0.625rem 2.25rem;
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-xl);
+    font-size: 0.875rem;
+    background: white;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.compras-buscador-input:focus {
+    border-color: var(--compras-accent);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* Dropdown de resultados */
+.compras-buscador-dropdown {
+    position: absolute;
+    top: calc(100% + 0.25rem);
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    z-index: 20;
+    max-height: 13rem;
+    overflow-y: auto;
+}
+
+.compras-buscador-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.625rem 1rem;
+    border: none;
+    border-bottom: 1px solid var(--color-gray-50);
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.compras-buscador-item:last-child {
+    border-bottom: none;
+}
+
+.compras-buscador-item:hover {
+    background: var(--compras-accent-light);
+}
+
+.compras-buscador-item-nombre {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-gray-800);
+}
+
+.compras-buscador-item-codigo {
+    margin-left: 0.5rem;
+    flex-shrink: 0;
+    font-size: 0.75rem;
+    color: var(--color-gray-400);
+}
+
+/* ==========================================
+    PRODUCTO SELECCIONADO
+   ========================================== */
+
+.compras-producto-seleccionado {
+    margin-top: 0.75rem;
+    padding: 1rem;
+    background: var(--compras-accent-light);
+    border: 1px solid var(--compras-accent-border);
+    border-radius: var(--radius-xl);
+}
+
+.compras-producto-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+}
+
+.compras-producto-nombre {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-gray-900);
+}
+
+.compras-producto-codigo,
+.compras-producto-precio {
+    margin-top: 0.125rem;
+    font-size: 0.75rem;
+    color: var(--color-gray-500);
+}
+
+.compras-producto-precio span {
+    font-weight: 500;
+}
+
+.compras-producto-cerrar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem;
+    border: none;
+    border-radius: var(--radius-lg);
+    background: transparent;
+    color: var(--color-gray-400);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.compras-producto-cerrar:hover {
+    background: white;
+    color: var(--color-gray-600);
+}
+
+/* Grid cantidad / precio / botón agregar */
+.compras-producto-form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+}
+
+.compras-producto-form-label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 0.75rem;
+    color: var(--color-gray-600);
+}
+
+.compras-producto-form-input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    background: white;
+    font-size: 0.875rem;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.compras-producto-form-input:focus {
+    border-color: var(--compras-accent);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.compras-producto-accion {
+    display: flex;
+    align-items: flex-end;
+}
+
+.compras-producto-agregar {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+    padding: 0.5rem;
+    border: none;
+    border-radius: var(--radius-lg);
+    background: var(--compras-accent);
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.compras-producto-agregar:hover {
+    background: var(--compras-accent-hover);
+}
+
+.compras-producto-agregar:active {
+    transform: scale(0.95);
+}
+
+/* ==========================================
+    CARRITO / DETALLE DE COMPRA
+   ========================================== */
+
+.compras-carrito-title {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+}
+
+.compras-carrito-vacio {
+    padding: 2rem 0;
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--color-gray-400);
+}
+
+.compras-carrito-table-container {
+    overflow-x: auto;
+}
+
+.compras-carrito-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+}
+
+.compras-carrito-table thead tr {
+    border-bottom: 1px solid var(--color-gray-100);
+    color: var(--color-gray-500);
+}
+
+.compras-carrito-table th {
+    padding: 0.5rem 0;
+    font-weight: 500;
+}
+
+.compras-carrito-row {
+    border-bottom: 1px solid var(--color-gray-50);
+}
+
+.compras-carrito-row td {
+    padding: 0.625rem 0;
+}
+
+.compras-carrito-subtotal {
+    font-weight: 600;
+}
+
+.compras-carrito-delete {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.375rem;
+    border: none;
+    border-radius: var(--radius-lg);
+    background: transparent;
+    color: var(--color-danger);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.compras-carrito-delete:hover {
+    background: var(--color-danger-light);
+}
+
+/* Footer: total + botón finalizar */
+.compras-carrito-footer {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-gray-200);
+}
+
+.compras-carrito-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.compras-carrito-total-label {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+}
+
+.compras-carrito-total-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--compras-accent);
+}
+
+.compras-carrito-finalizar {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: var(--radius-xl);
+    background: var(--compras-accent);
+    color: white;
+    font-size: 1.125rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.15s ease, opacity 0.2s ease;
+}
+
+.compras-carrito-finalizar:hover:not(:disabled) {
+    background: var(--compras-accent-hover);
+}
+
+.compras-carrito-finalizar:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.compras-carrito-finalizar:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ==========================================
+    HISTORIAL DE COMPRAS
+   ========================================== */
+
+.compras-historial {
+    background: white;
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+}
+
+.compras-historial__table-container {
+    overflow-x: auto;
+}
+
+.compras-historial__table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.compras-historial__table thead tr {
+    background-color: var(--color-gray-50);
+    border-bottom: 1px solid var(--color-gray-100);
+}
+
+.compras-historial__table th {
+    padding: 0.875rem 1.25rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-gray-500);
+}
+
+.compras-historial__table th:last-child {
+    text-align: right;
+}
+
+.compras-historial__row {
+    border-bottom: 1px solid var(--color-gray-50);
+    transition: background-color 0.2s ease;
+}
+
+.compras-historial__row:hover {
+    background-color: var(--compras-accent-light);
+}
+
+.compras-historial__table td {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.875rem;
+    color: var(--color-gray-600);
+}
+
+.compras-historial__id {
+    font-family: monospace;
+}
+
+.compras-historial__total {
+    font-weight: 700;
+    color: var(--compras-accent);
+}
+
+.compras-historial__acciones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.25rem;
+}
+
+/* Botones de acción en fila del historial */
+.compras-historial__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border: none;
+    background: transparent;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.compras-historial__btn--detalle {
+    color: var(--compras-accent);
+}
+
+.compras-historial__btn--detalle:hover {
+    background-color: var(--compras-accent-light);
+}
+
+.compras-historial__btn--eliminar {
+    color: var(--color-danger);
+}
+
+.compras-historial__btn--eliminar:hover {
+    background-color: var(--color-danger-light);
+}
+
+.compras-historial__empty {
+    padding: 4rem 1rem;
+    text-align: center;
+    color: var(--color-gray-400);
+}
+
+/* ==========================================
+    MODALES — Proveedor & Producto
+   ========================================== */
+
+.modal-proveedor,
+.modal-producto {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.modal-campo {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-label {
+    margin-bottom: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-gray-700);
+}
+/* w-full px-3 py-2.5 border border-gray-200 rounded-xl
+                  focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm */
+.modal-input {
+    width: 100%;
+    padding: 0.625rem 0.75rem;
+    border: 1px solid rgb(229 231 235);
+    border-radius: var(--radius-xl);
+    font-size: 0.875rem /* 14px */;
+    line-height: 1.25rem /* 20px */;
+}
+
+.modal-input:focus {
+    border-color: transparent;
+    outline: 2px solid transparent; /* Oculta el outline por defecto del navegador */
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px #3b82f6;
+}
+
+.modal-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+.modal-acciones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding-top: 0.5rem;
+}
+
+/* Botón cancelar de modal */
+.modal-btn-cancelar {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: var(--radius-xl);
+    background: transparent;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-gray-600);
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.modal-btn-cancelar:hover {
+    background: var(--color-gray-100);
+}
+
+/* Botón confirmar de modal */
+.modal-btn-confirmar {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.25rem;
+    border: none;
+    border-radius: var(--radius-xl);
+    background: var(--compras-accent);
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.modal-btn-confirmar:hover:not(:disabled) {
+    background: var(--compras-accent-hover);
+}
+
+.modal-btn-confirmar:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.modal-btn-confirmar:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+    .modal-grid-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-acciones {
+        flex-direction: column-reverse;
+    }
+
+    .modal-btn-cancelar,
+    .modal-btn-confirmar {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ==========================================
+    MODAL DETALLE DE COMPRA
+   ========================================== */
+
+.modal-detalle-compra {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.modal-detalle-compra__info {
+    font-size: 0.875rem;
+    color: var(--color-gray-600);
+}
+
+.modal-detalle-compra__tabla-container {
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--color-gray-100);
+    overflow-x: auto;
+}
+
+.modal-detalle-compra__tabla {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+}
+
+.modal-detalle-compra__tabla thead th {
+    padding: 0.25rem 0;
+    font-weight: 600;
+    color: var(--color-gray-500);
+}
+
+.modal-detalle-compra__tabla thead th:first-child { text-align: left; }
+.modal-detalle-compra__tabla thead th:nth-child(2) { text-align: center; }
+.modal-detalle-compra__tabla thead th:nth-child(3),
+.modal-detalle-compra__tabla thead th:nth-child(4) { text-align: right; }
+
+.modal-detalle-compra__tabla tbody tr {
+    border-top: 1px solid var(--color-gray-50);
+}
+
+.modal-detalle-compra__tabla td {
+    padding: 0.5rem 0;
+}
+
+.modal-detalle-compra__tabla td:nth-child(2) { text-align: center; }
+.modal-detalle-compra__tabla td:nth-child(3),
+.modal-detalle-compra__tabla td:nth-child(4) { text-align: right; }
+
+.modal-detalle-compra__subtotal {
+    font-weight: 600;
+}
+
+.modal-detalle-compra__total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--color-gray-200);
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.modal-detalle-compra__total-importe {
+    color: var(--compras-accent);
+}

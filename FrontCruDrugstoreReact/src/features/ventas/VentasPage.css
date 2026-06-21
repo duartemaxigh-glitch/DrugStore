@@ -1,0 +1,680 @@
+/* ==========================================
+    VENTAS PAGE
+   ========================================== */
+
+.ventas-page {
+    animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+.ventas-page__titulo {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+}
+
+/* ==========================================
+    LOADING
+   ========================================== */
+
+.ventas-page__loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem 0;
+}
+
+.ventas-page__spinner {
+    width: 2rem;
+    height: 2rem;
+    border: 4px solid var(--color-primary);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* ==========================================
+    TABS
+   ========================================== */
+
+.ventas-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.ventas-tab-btn {
+    padding: 0.625rem 1.25rem;
+    border-radius: var(--radius-xl);
+    font-weight: 600;
+    font-size: 0.875rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.ventas-tab-btn--active {
+    background-color: var(--color-primary);
+    color: white;
+    box-shadow: 0 10px 15px -3px rgba(5, 150, 105, 0.25);
+}
+
+.ventas-tab-btn--inactive {
+    background-color: white;
+    color: var(--color-gray-600);
+    border: 1px solid var(--color-gray-200);
+}
+
+.ventas-tab-btn--inactive:hover {
+    background-color: var(--color-gray-50);
+}
+
+/* ==========================================
+    VENTA EXITOSA
+   ========================================== */
+
+.venta-exitosa {
+    background: white;
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-2xl);
+    padding: 2rem;
+    text-align: center;
+    animation: scaleIn 0.2s ease forwards;
+}
+
+.venta-exitosa-icono {
+    width: 4rem;
+    height: 4rem;
+    color: var(--color-success);
+    margin: 0 auto 1rem;
+}
+
+.venta-exitosa-titulo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+    margin-bottom: 0.5rem;
+}
+
+.venta-exitosa-texto {
+    color: var(--color-gray-500);
+    margin-bottom: 0.5rem;
+}
+
+.venta-exitosa-botones {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+/* ==========================================
+    NUEVA VENTA — layout
+   ========================================== */
+
+.nueva-venta-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+    .nueva-venta-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+}
+
+.nueva-venta__productos {
+    grid-column: span 1;
+}
+
+@media (min-width: 1024px) {
+    .nueva-venta__productos {
+        grid-column: span 3;
+    }
+}
+
+/* ==========================================
+    BUSCADOR DE PRODUCTOS
+   ========================================== */
+
+.buscador-productos {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.buscador-productos__icono {
+    position: absolute;
+    width: 1.25rem;
+    height: 1.25rem;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-gray-400);
+    pointer-events: none;
+}
+
+.buscador-productos__input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-xl);
+    font-size: 0.875rem;
+    background: white;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.buscador-productos__input:focus {
+    border-color: var(--color-success);
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+/* ==========================================
+    LISTA DE PRODUCTOS
+   ========================================== */
+
+.lista-productos__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 0.25rem;
+}
+
+@media (min-width: 640px) {
+    .lista-productos__grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.lista-productos__vacio {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--color-gray-400);
+    padding: 2.5rem 0;
+}
+
+/* ==========================================
+    PRODUCTO CARD
+   ========================================== */
+
+.producto-card {
+    text-align: left;
+    background-color: white;
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-xl);
+    padding: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.producto-card:hover:not(:disabled) {
+    border-color: var(--color-primary-border);
+    box-shadow: var(--shadow-md);
+}
+
+.producto-card:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.producto-card--sin-stock {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: var(--color-gray-200);
+}
+
+.producto-card__nombre {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--color-gray-900);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.2s ease;
+}
+
+.producto-card:hover:not(:disabled) .producto-card__nombre {
+    color: var(--color-primary);
+}
+
+.producto-card__precio {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-top: 0.25rem;
+}
+
+.producto-card__stock {
+    font-size: 0.75rem;
+    color: var(--color-gray-400);
+    margin-top: 0.25rem;
+}
+
+.producto-card__stock--bajo {
+    color: var(--color-danger);
+    font-weight: 600;
+}
+
+/* ==========================================
+    CARRITO — columna y panel
+   ========================================== */
+
+.carrito-columna {
+    grid-column: span 1;
+}
+
+@media (min-width: 1024px) {
+    .carrito-columna {
+        grid-column: span 2;
+    }
+}
+
+.carrito-panel {
+    background: white;
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-2xl);
+    padding: 1.25rem;
+    position: sticky;
+    top: 1.5rem;
+}
+
+.carrito-titulo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+}
+
+.carrito-badge {
+    padding: 0.125rem 0.5rem;
+    background: var(--color-primary-light);
+    color: var(--color-primary-hover);
+    font-size: 0.75rem;
+    border-radius: 9999px;
+}
+
+.carrito-vacio {
+    padding: 2rem 0;
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--color-gray-400);
+}
+
+/* ==========================================
+    CARRITO ITEMS
+   ========================================== */
+
+.carrito-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-height: 16rem;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+}
+
+.carrito-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: var(--color-gray-50);
+    border-radius: var(--radius-xl);
+    animation: slideRight 0.35s ease forwards;
+}
+
+.carrito-item__info {
+    flex: 1;
+    min-width: 0;
+}
+
+.carrito-item__nombre {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-gray-900);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.carrito-item__precio {
+    margin: 0;
+    font-size: 0.75rem;
+    color: var(--color-gray-500);
+}
+
+.carrito-item__cantidad {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+}
+
+.carrito-item__btn-cantidad {
+    width: 1.75rem;
+    height: 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.carrito-item__btn-cantidad:hover {
+    background: var(--color-gray-100);
+}
+
+.carrito-item__cantidad-valor {
+    width: 2rem;
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 700;
+}
+
+.carrito-item__subtotal {
+    width: 5rem;
+    margin: 0;
+    text-align: right;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+}
+
+.carrito-item__btn-eliminar {
+    padding: 0.375rem;
+    border: none;
+    background: transparent;
+    color: var(--color-danger);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.carrito-item__btn-eliminar:hover {
+    background: var(--color-danger-light);
+}
+
+/* ==========================================
+    DATOS DE VENTA (selects cliente / medio de pago)
+   ========================================== */
+
+.datos-venta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-gray-100);
+}
+
+.datos-venta__grupo {
+    display: flex;
+    flex-direction: column;
+}
+
+.datos-venta__label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-gray-500);
+}
+
+.datos-venta__select {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-xl);
+    font-size: 0.875rem;
+    font-family: inherit;
+    background: white;
+    color: var(--color-gray-800);
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.datos-venta__select:focus {
+    border-color: var(--color-success);
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+/* ==========================================
+    RESUMEN / TOTAL Y BOTÓN FINALIZAR
+   ========================================== */
+
+.resumen-venta {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-gray-100);
+}
+
+.resumen-venta__total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.resumen-venta__label {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+}
+
+.resumen-venta__monto {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.resumen-venta__btn {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: var(--radius-xl);
+    background: var(--color-primary);
+    color: white;
+    font-size: 1.125rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease, opacity 0.2s ease;
+}
+
+.resumen-venta__btn:hover:not(:disabled) {
+    background: var(--color-primary-hover);
+    box-shadow: 0 10px 15px -3px rgba(5, 150, 105, 0.25);
+}
+
+.resumen-venta__btn:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.resumen-venta__btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ==========================================
+    HISTORIAL DE VENTAS
+   ========================================== */
+
+.historial-container {
+    background: white;
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+}
+
+.historial-table-wrapper {
+    overflow-x: auto;
+}
+
+.historial-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.historial-header-row {
+    background: var(--color-gray-50);
+    border-bottom: 1px solid var(--color-gray-100);
+}
+
+.historial-header-row th {
+    text-align: left;
+    padding: 0.875rem 1.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.historial-header-row .acciones-header {
+    text-align: right;
+}
+
+.historial-row {
+    border-bottom: 1px solid var(--color-gray-50);
+    transition: background-color 0.2s ease;
+}
+
+.historial-row:hover {
+    background: var(--color-primary-light);
+}
+
+.historial-row td {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.875rem;
+    color: var(--color-gray-700);
+}
+
+.historial-id {
+    font-family: monospace;
+}
+
+.historial-fecha {
+    color: var(--color-gray-600);
+}
+
+.historial-total {
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.historial-acciones {
+    text-align: right;
+}
+
+.acciones-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.25rem;
+}
+
+/* Botones de acción del historial — usan .btn-icon de components.css como base */
+.btn.btn-ver {
+    color: var(--color-info);
+    border: none;
+}
+
+.btn.btn-ver:hover {
+    background: var(--color-info-light);
+}
+
+.btn.btn-imprimir {
+    color: var(--color-primary);
+    border: none;
+}
+
+.btn.btn-imprimir:hover {
+    background: var(--color-primary-light);
+}
+
+.btn.btn-eliminar {
+    color: var(--color-danger);
+    border: none;
+}
+
+.btn.btn-eliminar:hover {
+    background: var(--color-danger-light);
+}
+
+.historial-sin-datos {
+    text-align: center;
+    padding: 4rem 1rem;
+    color: var(--color-gray-400);
+}
+
+/* ==========================================
+    MODAL DETALLE DE VENTA
+   ========================================== */
+
+.detalle-venta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.detalle-info {
+    font-size: 0.875rem;
+    color: var(--color-gray-600);
+    margin: 0;
+}
+
+.detalle-productos {
+    border-top: 1px solid var(--color-gray-100);
+    padding-top: 0.75rem;
+    overflow-x: auto;
+}
+
+.detalle-tabla {
+    width: 100%;
+    font-size: 0.875rem;
+    border-collapse: collapse;
+}
+
+.detalle-tabla-header th {
+    padding: 0.25rem 0;
+    font-weight: 600;
+    color: var(--color-gray-500);
+}
+
+.detalle-tabla-row {
+    border-top: 1px solid var(--color-gray-50);
+}
+
+.detalle-tabla-row td {
+    padding: 0.5rem 0;
+}
+
+.detalle-subtotal {
+    font-weight: 600;
+}
+
+.detalle-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--color-gray-200);
+    padding-top: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+.detalle-total-label {
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.detalle-total-valor {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
